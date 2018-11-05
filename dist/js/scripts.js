@@ -88,5 +88,12 @@ function getTimeRemaining(endtime) {
     initializeClock('timer', deadline);
 
 });
-  
+
+function goTo(element) {
+  $('html, body').animate({
+      scrollTop: $(element).offset().top
+  }, 2000);
+}
+
+
  

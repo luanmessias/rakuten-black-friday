@@ -6,7 +6,7 @@
     width: 100%;
     max-width: 1024px;
 
-    @media #{$res-xs}, #{$res-sm} {
+    @media #{$res-break}{
       padding: 0px 15px;  
     }
 }

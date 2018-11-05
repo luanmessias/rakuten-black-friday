@@ -13,7 +13,7 @@
 </head>
 
 
-<body>
+<body id="home">
     <header style="width: 100%; height: 146px;">
 
 
@@ -23,16 +23,16 @@
     <div class="bf2018">
         <ul class="menu">
             <li class="menu__item active">
-                <a class="menu__link" href="#">INÍCIO</a>
+                <a class="menu__link" onclick="goTo('#home')">INÍCIO</a>
             </li>
             <li class="menu__item">
-                <a class="menu__link" href="#">SOBRE A BLACK FRIDAY</a>
+                <a class="menu__link" onclick="goTo('#about')">SOBRE A BLACK FRIDAY</a>
             </li>
             <li class="menu__item">
-                <a class="menu__link" href="#">CUIDADOS PARA O BLACK FRIDAY</a>
+                <a class="menu__link" onclick="goTo('#care')">CUIDADOS PARA O BLACK FRIDAY</a>
             </li>
             <li class="menu__item">
-                <a class="menu__link" href="#">CATEGORIAS MAIS VENDIDAS</a>
+                <a class="menu__link" onclick="goTo('#cat')">CATEGORIAS MAIS VENDIDAS</a>
             </li>
         </ul>
         <div class="row one">
@@ -91,7 +91,7 @@
             </div>
         </div>
 
-        <div class="wrapper">
+        <div class="wrapper" id="about">
             <h1 class="titles">
                 Rakuten Black Friday cheio
                 <br class="onlydesk"> de promoções
@@ -145,7 +145,7 @@
             </div>
 
 
-            <h1 class="titles">
+            <h1 class="titles" id="care">
                 Cuidados para o Black Friday
             </h1>
 
@@ -194,7 +194,7 @@
             </div>
 
 
-            <h1 class="titles">
+            <h1 class="titles" id="cat">
                 Categorias mais vendidas
             </h1>
 
@@ -284,7 +284,7 @@
         <div class="row dices">
 
             <div class="wrapper">
-                    <img src="dist/img/dices.png" alt="">
+                <img src="dist/img/dices.png" alt="">
             </div>
 
         </div>

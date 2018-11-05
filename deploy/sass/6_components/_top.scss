@@ -46,6 +46,7 @@
         height: 100%;
         padding: 10px;
         position: relative;
+        cursor: pointer;
 
         &.active{
             &:after{
@@ -366,6 +367,9 @@
     background-image: url('../../dist/img/dices_bg.png');
     background-repeat: no-repeat;
     background-position: center;
+    .wrapper{
+        overflow: hidden;
+    }
 }
 
 .footer{
