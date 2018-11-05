@@ -1,0 +1,500 @@
+.header {
+    @include e("top") {
+        @include flexbox(row, wrap, center, center, center);
+        height: auto;
+        padding: 5px 0px;
+        border: 1px solid #CCC;
+
+        @media #{$res-break} {
+            display: none;
+        }
+
+        .wrapper {
+            @include flexbox(row, wrap, space-between, center, center);
+
+            .grid{
+                padding: 0px;
+            }
+
+            .rk-col {
+                @include box-sizing;
+                @include transition;
+
+                @media #{$res-xs}, #{$res-sm}, #{$res-md} {
+                    @include flexbox(row, wrap, center, center, center);
+
+                    width: 100%;
+                    padding: 5px 0px;
+                }
+            }
+        }
+    }
+
+
+    @include e("middle") {
+        @include transition;
+
+        padding: 10px 0px;
+
+        @media #{$res-break} {
+            background-color: $color-red;
+            overflow: hidden;
+        }
+
+        .wrapper {
+            @include flexbox(row, wrap, space-between, center, center);
+        }
+    }
+
+
+    @include e("mobmenu") {
+        @include center-cont;
+        @include box-sizing;
+        @include transition;
+        @include border-radius(5px);
+        
+        display: none;
+        border: 0px solid #FFF;
+        padding: 5px;
+        width: 35px;
+        height: 35px;
+        left: 0;
+        cursor: pointer;
+
+        @media #{$res-break} {
+            display: flex;
+        }
+
+        > span {
+            width: 100%;
+            height: 3px;
+            background-color: #FFF;
+            display: block;
+            margin: 5px 0px;
+        }
+
+        &:before,
+        &:after {
+            @include transition;
+
+            content: "";
+            width: 100%;
+            height: 3px;
+            display: block;
+            background-color: #FFF;
+        }
+
+        &.active {
+            background-color: $color-red;
+            @include animate(bounceInRight, 0s);
+
+            > span {
+                @include opacity(0);
+                height: 2px;
+                width: 20px;
+            }
+
+            &:before,
+            &:after {
+                background-color: #FFF;
+                position: absolute;
+                height: 2px;
+                width: 20px;
+                margin-left: 3px;
+            }
+
+            &:before {
+                @include rotate(45);
+            }
+
+            &:after {
+                @include rotate(-45);
+            }
+
+            & + .header__logo{
+                @include transition(null, 0s);
+                margin-left: 35px;
+            }
+        }
+
+        @media #{$res-break} {
+            &.active {
+                @include radiustl(0);
+                @include radiusbl(0);
+                @include transition;
+
+                z-index: 11;
+                position: fixed;
+                left: 85%;
+                top: 10px;
+
+                & + .user {
+                    background-color: $color-gray-light;
+                    right: 0;
+                    width: 85%;
+                }
+            }
+        }
+    }
+
+
+    @include e("logo") {
+        @include order(1);
+        width: 100%;
+        max-width: 180px;
+        display: block;
+
+        @include e("img") {
+            @include transition;
+            width: 100%;
+            height: auto;
+
+            .st0 {
+                @include transition;
+            }
+
+            @media #{$res-break} {
+                width: 90px;
+                margin-left: 10px;
+                .st0 {
+                    fill: #FFF;
+                }
+            }
+        }
+    }
+
+
+    @include e("search") {
+        @include order(2);
+        @include flexbox(row, nowrap, center, center, center);
+        @include box-sizing;
+        @include transition;
+
+        width: 100%;
+        max-width: 390px;
+
+        @media #{$res-xs}, #{$res-sm}, #{$res-md} {
+            @include order(5);
+
+            max-width: inherit;
+            margin: 10px 0px;
+        }
+
+        @media #{$res-break} {
+            display: none;
+
+            @include order(7);
+        }
+
+        &.active {
+            display: flex;
+
+            @include animate(fadeIn, 0s);
+        }
+
+        @include e("field") {
+            @include box-sizing;
+            @include radiustl;
+            @include radiusbl;
+            width: calc(100% - 36px);
+            background-color: #f3f3f3;
+            border: 0px;
+            height: 36px;
+            padding: 5px 15px;
+            font-size: 12px;
+            -webkit-box-shadow: inset 1px 1px 2px 0px rgba(227, 227, 227, 1);
+            -moz-box-shadow: inset 1px 1px 2px 0px rgba(227, 227, 227, 1);
+            box-shadow: inset 1px 1px 2px 0px rgba(227, 227, 227, 1);
+
+        }
+
+
+        @include e("bt") {
+            @include flexbox(row, nowrap, center, center, center);
+            @include box-sizing;
+            @include radiustr;
+            @include radiusbr;
+            width: 36px;
+            height: 36px;
+            background-color: #f3f3f3;
+            -webkit-box-shadow: inset -2px 1px 2px 0px rgba(227, 227, 227, 1);
+            -moz-box-shadow: inset -2px 1px 2px 0px rgba(227, 227, 227, 1);
+            box-shadow: inset -2px 1px 2px 0px rgba(227, 227, 227, 1);
+            &:before {
+                @include set-icon($fa-var-search, 18px, 900, $color-gray);
+            }
+
+            &:hover::before {
+                @include animate(bounceIn, 0s);
+            }
+
+            @media #{$res-break} {
+                &:before {
+                    @include set-icon($fa-var-arrow-right, 20px, 900, $color-gray);
+                }
+            }
+        }
+    }
+
+
+    @include e("mobsearch") {
+        @include order(3);
+
+        display: none;
+        margin-left: auto;
+        margin-right: 10px;
+
+        @media #{$res-break} {
+            display: flex;
+        }
+
+        @include e("bt") {
+            cursor: pointer;
+
+            &:before {
+                @include set-icon($fa-var-search-plus, 25px, 900, #FFF);
+            }
+
+            &:hover {
+                .fas {
+                    @include animate(bounceIn, 0s);
+                }
+            }
+
+            &.active {
+                &:before {
+                    @include set-icon($fa-var-search-minus, 25px, 900, #FFF);
+                }
+            }
+        }
+    }
+
+
+    @include e("user") {
+        @include order(4);
+        @include transition;
+        @include e("icon") {
+            font-size: 20px;
+            color: $color-gray-dark;
+        }
+
+
+        @media #{$res-break} {
+            display: none;
+        }
+
+        @include e("link") {
+            @include fonte($second-font, 400, 14px, $color-gray-dark);
+            @include transition;
+
+            &:hover {
+                color: $color-red;
+            }
+        }
+
+
+        @include e("txt") {
+            @include fonte($second-font, 400, 14px, $color-gray-dark);
+
+            &:hover {
+                color: $color-red;
+            }
+        }
+    }
+
+
+    @include e("cart") {
+        @include order(5);
+        @include transition;
+        @include flexbox(row, nowrap, center, center, center);
+
+        position: relative;
+
+        @include e("bt") {
+            @include flexbox(row, nowrap, center, center, center);
+            @include border-radius(50px);
+
+            background-color: $color-red;
+            width: 40px;
+            height: 40px;
+
+            .fas {
+                @include transition;
+
+                color: #FFF;
+            }
+
+            @media #{$res-break} {
+                .fas {
+                    font-size: 25px;
+                }
+            }
+        }
+
+
+        @include e("txt") {
+            @include fonte($second-font, 400, 14px, $color-gray-dark);
+
+            margin-left: 10px;
+
+            @media #{$res-break} {
+                @include flexbox(row, nowrap, center, center, center);
+                @include border-radius(50px);
+
+                background-color: $color-red-dark;
+                color: #FFF;
+                font-weight: bold;
+                width: 25px;
+                height: 25px;
+                position: absolute;
+                left: 15px;
+                top: 16px;
+
+                @include e("desc") {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.hicons {
+    @media #{$res-lg}, #{$res-xl} {
+        @include m("left") {
+            @include flexbox(row, nowrap, flex-start, center, center);
+        }
+
+
+        @include m("right") {
+            @include flexbox(row, nowrap, flex-end, center, center);
+        }
+    }
+
+    @media #{$res-xs}, #{$res-sm}, #{$res-md} {
+        @include flexbox(row, nowrap, center, center, center);
+    }
+
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+
+    @include e("item") {
+        @include flexbox(row, nowrap, flex-start, center, center);
+        @include m("sep") {
+            width: 1px;
+            height: 25px;
+            background-color: #CCC;
+            margin-right: 15px;
+        }
+    }
+
+
+    @include e("link") {
+        @include flexbox(row, nowrap, flex-start, center, center);
+        @include fonte($second-font, 400, 12px, $color-gray);
+
+        padding-left: 30px;
+        margin-right: 20px;
+        height: 25px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: left center;
+
+        &:hover {
+            color: $color-red;
+        }
+
+        @include m("orders") {
+            background-image: url("../../dist/img/ico_header_pedidos.png");
+
+            &:hover {
+                background-image: url("../../dist/img/ico_header_pedidos_hover.png");
+            }
+        }
+
+
+        @include m("call") {
+            background-image: url("../../dist/img/ico_header_sac.png");
+
+            &:hover {
+                background-image: url("../../dist/img/ico_header_sac_hover.png");
+            }
+        }
+
+
+        @include m("open") {
+            background-image: url("../../dist/img/ico_header_loja.png");
+
+            &:hover {
+                background-image: url("../../dist/img/ico_header_loja_hover.png");
+            }
+        }
+
+
+        @include m("points") {
+            background-image: url("../../dist/img/ico_header_points.png");
+        }
+
+
+        @include m("viber") {
+            > img {
+                width: 70px;
+                height: auto;
+            }
+        }
+    }
+
+
+    @include e("flags") {
+        @include flexbox(row, nowrap, center, center, center);
+
+        > img {
+            margin-left: 5px;
+        }
+    }
+}
+
+.menu {
+    width: 100%;
+    background-color: $color-red;
+
+    @media #{$res-break} {
+        display: none;
+    }
+    
+    .wrapper{
+        @include flexbox(row, nowrap, space-between, center, center);
+        list-style: none;
+        margin: 0px;
+        margin: 0px auto;
+    }
+
+    @include e('item'){
+        position: relative;
+    }
+
+    @include e('link'){
+        @include flexbox(row, nowrap, center, center, center);
+        @include fonte($second-font, 400, 14px, #FFF);
+        @include box-sizing;
+        @include transition;
+        padding: 15px 10px;
+        &:hover{
+            background-color: #FFF;
+            color: $color-red;
+            &:after{
+                color: $color-red;
+            }
+        }
+
+        @include m('all'){
+            &:after{
+                @include set-icon($fa-var-chevron-circle-down, 14px, 900, #FFF);
+                padding-left: 10px;
+            }
+        }
+
+
+    }
+
+}
