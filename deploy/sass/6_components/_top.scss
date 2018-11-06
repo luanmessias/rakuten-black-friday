@@ -1,24 +1,25 @@
-.bf2018{
+.bf2018 {
     width: 100%;
     background-color: #151513;
     position: absolute;
 }
 
-.onlydesk{
+.onlydesk {
     @media #{$res-break} {
         display: none;
     }
 }
 
-.one{
-    background-image: url('../../dist/img/bg.png');
+.one {
+    background-image: url("../../dist/img/bg.png");
     background-repeat: no-repeat;
     background-position: center;
 }
 
-.menu{
+.menu {
     @include flexbox(row, nowrap, center, center, center);
     @include transition;
+    z-index: 999;
     width: 100%;
     list-style: none;
     padding: 0px;
@@ -26,32 +27,35 @@
     height: 95px;
     border-bottom: 1px solid #4e4f4d;
     background-color: #151513;
-    
+
     @media #{$res-break} {
         display: none;
     }
 
-    &.active{
+    &.active {
         height: 50px;
         position: fixed;
         top: 0px;
-        & + .wrapper{
+
+        & + .wrapper {
             margin-top: 95px;
         }
     }
 
-    @include e('item'){
+    @include e("item") {
         @include flexbox(row, nowrap, center, center, center);
         @include box-sizing;
+
         height: 100%;
         padding: 10px;
         position: relative;
         cursor: pointer;
 
-        &.active{
-            &:after{
+        &.active {
+            &:after {
                 @include border-radius(5px);
                 @include animate(bounceInLeft, 0s);
+
                 content: "";
                 background-color: $color-red;
                 width: 100%;
@@ -61,102 +65,107 @@
                 bottom: -3px;
             }
         }
-
     }
 
-    @include e('link'){
+
+    @include e("link") {
         @include fonte($second-font, normal, 14px, #707070);
         @include transition;
 
-        &:hover{
+        &:hover {
             color: #979797;
         }
-
     }
 }
 
-.title{
+.title {
     @include flexbox(row, wrap, center, flex-start, center);
+
     padding-top: 50px;
     text-align: center;
 
-    @include e('logo'){
+    @include e("logo") {
         width: 100%;
         margin-bottom: 20px;
+
         @media #{$res-break} {
-            img{
+            img {
                 width: 100%;
                 height: auto;
             }
         }
     }
 
-    @include e('icons'){
+
+    @include e("icons") {
         margin-top: 18px;
+
         @media #{$res-350} {
-            img{
+            img {
                 width: 100%;
                 height: auto;
             }
         }
     }
 
-    @include e('percent'){
-        @media #{$res-350} {
-            img{
+
+    @include e("percent") {
+        @media #{$res-400} {
+            img {
                 width: 100%;
                 height: auto;
             }
-        } 
+        }
     }
 }
 
-.timer{
+.timer {
     @include flexbox(row, nowrap, space-between, flex-start, center);
+
     width: 100%;
     padding: 30px 0px;
 
-    @include e('block'){
+    @include e("block") {
         @include flexbox(column, nowrap, space-between, center, center);
         @include fonte($second-font, bold, 80px, #FFF);
+
         text-align: center;
-        & > span + span{
+
+        & > span + span {
             @include fonte($second-font, normal, 16px, #FFF);
         }
 
-
-        @include m('sec'){
+        @include m("sec") {
             @media #{$res-400} {
                 display: none;
             }
         }
-          
-
     }
 
-    @include e('sep'){
+
+    @include e("sep") {
         width: 1px;
         height: 85px;
         background-color: #2d2d2c;
         display: block;
 
-        @include m('sec'){
+        @include m("sec") {
             @media #{$res-400} {
                 display: none;
             }
         }
-        
     }
-
 }
 
-.titles{
+.titles {
     @include flexbox(column, nowrap, center, center, center);
     @include fonte($second-font, normal, 26px, #FFF);
+
     text-transform: uppercase;
     text-align: center;
     width: 100%;
-    &:after{
+
+    &:after {
         content: "";
         width: 60px;
         height: 6px;
@@ -166,55 +175,62 @@
     }
 }
 
-.texts{
+.texts {
     @include fonte($second-font, normal, 16px, #FFF);
+
     text-align: center;
 }
 
-
-.form{
+.form {
     @include flexbox(row, wrap, space-between, flex-start, flex-start);
+
     padding: 50px 0px;
 
-    
-    @include e('left'){
-        .form__input{
+    @include e("left") {
+        .form__input {
             width: 100%;
         }
     }
 
 
-    @include e('right'){
+    @include e("right") {
         @include flexbox(row, wrap, space-between, flex-start, flex-start);
-        .form__input{
+
+        .form__input {
             @include radiustr(0px);
             @include radiusbr(0px);
+
             width: 65%;
         }
-        .form__bt{
+
+        .form__bt {
             @include radiustl(0px);
             @include radiusbl(0px);
+
             width: 35%;
         }
     }
 
-    @include e('input'){
-        @include border-radius();
+
+    @include e("input") {
+        @include border-radius;
         @include box-sizing;
         @include remove-shadow;
+
         height: 60px;
         padding: 10px 20px;
         border: 0px;
-        
     }
 
-    @include e('bt'){
+
+    @include e("bt") {
         @include flexbox(row, wrap, center, center, center);
         @include fonte($second-font, normal, 20px, #707070);
-        @include border-radius();
+        @include border-radius;
         @include box-sizing;
         @include remove-shadow;
         @include transition;
+
         background-color: $color-red;
         color: #FFF;
         text-transform: uppercase;
@@ -222,104 +238,110 @@
         padding: 10px 20px;
         border: 0px;
         cursor: pointer;
-        &:hover{
+
+        &:hover {
             background-color: $color-red-dark;
         }
     }
-
 }
 
-.history{
+.history {
     border-bottom: 1px solid #252524;
     padding: 25px 0px;
-    @include e('link'){
+
+    @include e("link") {
         @include flexbox(row, nowrap, center, center, center);
         @include fonte($second-font, normal, 18px, #FFF);
+
         width: 100%;
         text-align: center;
         cursor: pointer;
 
-        &.active{
-            .history__plus:before{
+        &.active {
+            .history__plus:before {
                 content: "-";
             }
         }
-
     }
 
-    @include e('plus'){
+
+    @include e("plus") {
         @include flexbox(column, nowrap, center, center, center);
         @include border-radius(50px);
+
         text-align: center;
         background-color: $color-red;
         width: 40px;
         height: 40px;
         margin-left: 10px;
-        &:before{
+
+        &:before {
             content: "+";
             color: #FFF;
             font-size: 26px;
         }
-
     }
 
-    @include e('cont'){
+
+    @include e("cont") {
         @include animate(fadeOut, 0s);
+
         overflow: hidden;
         display: none;
-        &.active{
+
+        &.active {
             @include animate(fadeIn, 0s);
+
             display: block;
         }
-        
-
     }
-
-
 }
 
-.tips{
-   
-    @include e('title'){
+.tips {
+    @include e("title") {
         @include flexbox(row, nowrap, space-between, center, center);
         @include fonte($second-font, normal, 18px, #FFF);
+
         text-transform: uppercase;
         border-top: 1px solid #252524;
         padding: 10px 0px;
         cursor: pointer;
 
-        &:after{
+        &:after {
             @include set-icon($fa-var-chevron-down, 30px, 900, #FFF);
         }
 
-        &.active{
-            &:after{
+        &.active {
+            &:after {
                 @include set-icon($fa-var-chevron-up, 30px, 900, #FFF);
             }
         }
-
     }
 
-    @include e('cont'){
+
+    @include e("cont") {
         @include fonte($second-font, normal, 16px, #FFF);
+
         padding-bottom: 10px;
         display: none;
-        &.active{
+
+        &.active {
             @include animate(fadeIn, 0s);
+
             display: block;
         }
     }
-
 }
 
-.cat{
+.cat {
     @include flexbox(row, wrap, space-between, flex-start, flex-start);
 
-    @include e('item'){
+    @include e("item") {
         @include flexbox(column, nowrap, center, center, center);
         @include box-sizing;
+
         padding: 15px;
-        text-align: center; 
+        text-align: center;
 
         @media #{$res-300}, #{$res-350}, #{$res-400} {
             width: 100%;
@@ -329,60 +351,81 @@
             width: calc(100% / 2);
         }
 
-        @media #{$res-sm}{
+        @media #{$res-sm} {
             width: calc(100% / 3);
         }
-        
+
         @media #{$res-md}, #{$res-lg}, #{$res-xl} {
             width: calc(100% / 4);
         }
 
-
-        &:hover{
-            .cat__circle{
+        &:hover {
+            .cat__circle {
                 @include animate(flip, 0s);
             }
         }
-
     }
 
-    @include e('circle'){
+
+    @include e("circle") {
         @include flexbox(column, nowrap, center, center, center);
         @include border-radius(50%);
         @include box-sizing;
+
         background-color: $color-red;
         width: 150px;
         height: 150px;
         margin-bottom: 10px;
     }
 
-    @include e('txt'){
+
+    @include e("txt") {
         @include fonte($second-font, normal, 14px, #FFF);
     }
-
 }
 
-.dices{
-    padding: 15px 0px;
-    background-image: url('../../dist/img/dices_bg.png');
+.dices {
+    padding: 50px 0px;
+    background-image: url("../../dist/img/dices_bg.png");
     background-repeat: no-repeat;
     background-position: center;
-    .wrapper{
+
+    @media #{$res-300}, #{$res-350}, #{$res-400} {
+        display: none;
+    }
+
+    .wrapper {
         overflow: hidden;
     }
+
+    img{
+        position: relative;
+    }
+
+
 }
 
-.footer{
+.footer {
     text-align: center;
     border-top: 1px solid #4c4c4b;
     padding: 35px 0px;
-    @include e('txt'){
+
+    @include e("txt") {
         @include fonte($second-font, normal, 12px, #4c4c4b);
+
         margin: 35px 0px;
     }
-    
-    @include e('copy'){
-        @include fonte($second-font, normal, 13px, #4c4c4b);  
-        text-transform: uppercase;      
+
+
+    @include e("copy") {
+        @include fonte($second-font, normal, 13px, #4c4c4b);
+
+        text-transform: uppercase;
     }
+}
+
+.iframe {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
 }
