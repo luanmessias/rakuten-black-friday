@@ -1,4 +1,4 @@
-.wrapper {
+.bfwrapper {
     @include box-sizing;
     @include transition;
     padding: 0px 50px;
@@ -16,7 +16,7 @@
 }
 
 
-.rk-row {
+.bf-row {
   @include box-sizing;
   width: 100%;
   
@@ -33,7 +33,7 @@
 }
 
 
-.rk-col{
+.bf-col{
   @include m('left'){
       @include flexbox(row, wrap, flex-start, center, center);
   }
@@ -44,7 +44,7 @@
 }
 
 
-.rk-container{
+.bf-container{
   min-height: calc(100vh - 189px);
 }
 

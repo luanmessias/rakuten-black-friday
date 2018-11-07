@@ -1,7 +1,6 @@
 .bf2018 {
     width: 100%;
     background-color: #151513;
-    position: absolute;
 }
 
 .main{
@@ -84,14 +83,14 @@
     @include e("link") {
         @include fonte($second-font, normal, 14px, #707070);
         @include transition;
-
+        color: #707070 !important;
         &:hover {
             color: #979797;
         }
     }
 }
 
-.title {
+.bftitle {
     @include flexbox(row, wrap, center, flex-start, center);
 
     padding-top: 50px;
@@ -100,6 +99,9 @@
     @include e("logo") {
         width: 100%;
         margin-bottom: 20px;
+        img{
+            margin: 0px auto;
+        }
 
         @media #{$res-break} {
             img {
@@ -173,7 +175,7 @@
 .titles {
     @include flexbox(column, nowrap, center, center, center);
     @include fonte($second-font, normal, 26px, #FFF);
-
+    border: 0px;
     text-transform: uppercase;
     text-align: center;
     width: 100%;

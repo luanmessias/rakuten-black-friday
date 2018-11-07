@@ -3,73 +3,75 @@ var velocity = 0.2;
 
 function update() {
     var pos = jQuery(window).scrollTop();
-
     jQuery('.dices').each(function () {
         var $element = jQuery(this);
-        // subtract some from the height b/c of the padding
         var height = $element.height() + 1500;
         jQuery(this).css('backgroundPosition', '50% ' + Math.round(((height - pos) * velocity)) + 'px');
-        jQuery('.dices > .wrapper').css('bottom', '-20px ' + Math.round(((height - pos) * velocity)) + 'px');
+        jQuery('.dices > .bfwrapper').css('bottom', '-20px ' + Math.round(((height - pos) * velocity)) + 'px');
     });
 };
 
-function getTimeRemaining(endtime) {
-    var t = Date.parse(endtime) - Date.parse(new Date());
-    var seconds = Math.floor((t / 1000) % 60);
-    var minutes = Math.floor((t / 1000 / 60) % 60);
-    var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-    var days = Math.floor(t / (1000 * 60 * 60 * 24));
-    return {
-        'total': t,
-        'days': days,
-        'hours': hours,
-        'minutes': minutes,
-        'seconds': seconds
-    };
+
+
+function initializeClock() {
+        // Set the date we're counting down to
+        var countDownDate = new Date("Nov 23, 2018 00:00:01").getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+    
+            // Get todays date and time
+            var now = new Date().getTime();
+    
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+    
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+            // Display the result in the element with id="clock"
+            // document.getElementById("clock").innerHTML = days + "d " + hours + "h "
+            // + minutes + "m " + seconds + "s ";
+    
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+    
+    
+            // If the count down is finished, write some text 
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("clock").innerHTML = "EXPIRED";
+            }
+        }, 1000);
 }
 
-function initializeClock(id, endtime) {
-    var clock = document.getElementById(id);
-    var daysSpan = clock.querySelector('.timer__day');
-    var hoursSpan = clock.querySelector('.timer__hour');
-    var minutesSpan = clock.querySelector('.timer__min');
-    var secondsSpan = clock.querySelector('.timer__sec');
+jQuery(window).bind('scroll', update);
 
-    function updateClock() {
-        var t = getTimeRemaining(endtime);
+jQuery(window).scroll(function (event) {
+    var sc = jQuery(window).scrollTop();
+    //console.log(sc);
 
-        daysSpan.innerHTML = t.days;
-        hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-        minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-        secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-
-        if (t.total <= 0) {
-            clearInterval(timeinterval);
-        }
+    if (sc > 146) {
+        jQuery('.menu').addClass('active');
+    } else {
+        jQuery('.menu').removeClass('active');
     }
 
-    updateClock();
-    var timeinterval = setInterval(updateClock, 1000);
-}
+});
 
 
 jQuery(document).ready(function () {
 
+    initializeClock();
+
     jQuery('.menu__link').click(function () {
         jQuery('.menu__link').parent().removeClass('active');
         jQuery(this).parent().addClass('active');
-    });
-
-    jQuery(window).scroll(function (event) {
-        var sc = jQuery(window).scrollTop();
-        //console.log(sc);
-
-        if (sc > 146) {
-            jQuery('.menu').addClass('active');
-        } else {
-            jQuery('.menu').removeClass('active');
-        }
-
     });
 
     jQuery('.history__link').click(function () {
@@ -94,13 +96,7 @@ jQuery(document).ready(function () {
         } /* speed */);
     });
 
-    jQuery(window).bind('scroll', update);
-
-    var deadline = new Date(Date.parse('Nov 23, 2018'));
-    initializeClock('timer', deadline);
 
 });
-
-
 
 
