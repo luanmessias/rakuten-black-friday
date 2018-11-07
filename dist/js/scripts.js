@@ -1,5 +1,4 @@
 var windowWidth = window.innerWidth;
-
 var velocity = 0.2;
 
 function update() {
@@ -10,11 +9,9 @@ function update() {
         // subtract some from the height b/c of the padding
         var height = $element.height() + 1500;
         jQuery(this).css('backgroundPosition', '50% ' + Math.round(((height - pos) * velocity)) + 'px');
-        jQuery('.dices img').css('bottom', '-20px ' +  Math.round(((height - pos) * velocity)) + 'px');
+        jQuery('.dices > .wrapper').css('bottom', '-20px ' + Math.round(((height - pos) * velocity)) + 'px');
     });
 };
-
-jQuery(window).bind('scroll', update);
 
 function getTimeRemaining(endtime) {
     var t = Date.parse(endtime) - Date.parse(new Date());
@@ -57,9 +54,10 @@ function initializeClock(id, endtime) {
 
 
 jQuery(document).ready(function () {
-    jQuery('.menu__item').click(function () {
-        jQuery('.menu__item').removeClass('active');
-        jQuery(this).addClass('active');
+
+    jQuery('.menu__link').click(function () {
+        jQuery('.menu__link').parent().removeClass('active');
+        jQuery(this).parent().addClass('active');
     });
 
     jQuery(window).scroll(function (event) {
@@ -74,7 +72,6 @@ jQuery(document).ready(function () {
 
     });
 
-
     jQuery('.history__link').click(function () {
         jQuery('.history__cont').toggleClass('active');
         jQuery(this).toggleClass('active');
@@ -85,18 +82,22 @@ jQuery(document).ready(function () {
         jQuery('.tips__cont', this).toggleClass('active');
     });
 
+
+
+    jQuery("a[href^='#']").click(function (e) {
+        e.preventDefault();
+
+        var position = jQuery(jQuery(this).attr("href")).offset().top;
+
+        jQuery("body, html").animate({
+            scrollTop: (position - 100)
+        } /* speed */);
+    });
+
+    jQuery(window).bind('scroll', update);
+
     var deadline = new Date(Date.parse('Nov 23, 2018'));
     initializeClock('timer', deadline);
-
-    jQuery("a[href^='#']").click(function(e) {
-        e.preventDefault();
-        
-        var position = jQuery(jQuery(this).attr("href")).offset().top;
-    
-        jQuery("body, html").animate({
-            scrollTop: position
-        } /* speed */ );
-    });
 
 });
 

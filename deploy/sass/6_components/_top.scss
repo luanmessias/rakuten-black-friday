@@ -4,6 +4,19 @@
     position: absolute;
 }
 
+.main{
+    width: 100%;
+    background: none;
+    padding: 0;
+}
+.main .container-full{
+    width: 100%;
+    margin: 0;
+}
+#header{
+    margin-bottom: 0px;
+}
+
 .onlydesk {
     @media #{$res-break} {
         display: none;
@@ -11,7 +24,7 @@
 }
 
 .one {
-    background-image: url("../../dist/img/bg.png");
+    background-image: url("https://seguro.rakuten.com.br/resources/SD/sd/landing-pages/black-friday/2018/dist/img/bg.png");
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -375,7 +388,7 @@
         background-color: $color-red;
         width: 150px;
         height: 150px;
-        margin-bottom: 10px;
+        margin: 10px auto;
     }
 
 
@@ -386,7 +399,7 @@
 
 .dices {
     padding: 50px 0px;
-    background-image: url("../../dist/img/dices_bg.png");
+    background-image: url("https://seguro.rakuten.com.br/resources/SD/sd/landing-pages/black-friday/2018/dist/img/dices_bg.png");
     background-repeat: no-repeat;
     background-position: center;
 
